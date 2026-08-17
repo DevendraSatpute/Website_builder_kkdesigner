@@ -1,0 +1,161 @@
+{
+  "theme": "light",
+  "project_type": "portfolio",
+  "target_audience": "Homeowners, luxury/boutique interior makeovers, bungalow/villa owners in Pune.",
+  "brand_identity": {
+    "name": "K K Designers",
+    "founder": "Akshada Kisan Thorat",
+    "core_philosophy": "Passion over profession — bridging creative design vision, raw on-site execution, and photorealistic 3D visualization.",
+    "vibe": "Minimalist luxury, bespoke, architectural, tactile, grounded"
+  },
+  "typography": {
+    "heading_font": "Cormorant Garamond, serif",
+    "body_font": "Montserrat, sans-serif",
+    "rules": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tighter leading-none font-light",
+      "h2": "text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-tight",
+      "h3": "text-2xl sm:text-3xl leading-snug",
+      "h4": "text-lg sm:text-xl font-medium",
+      "body": "text-base leading-relaxed tracking-wide",
+      "labels": "uppercase text-xs tracking-[0.2em] font-medium"
+    },
+    "instruction_to_main_agent": "Import Cormorant Garamond and Montserrat via Google Fonts in index.html or global css. Use Cormorant Garamond strictly for all main headings (H1, H2, H3) and big quotes. Use Montserrat for body copy, buttons, forms, and small labels."
+  },
+  "colors": {
+    "primary_bg": "#F5F2EB",
+    "secondary_bg": "#FFFFFF",
+    "text_primary": "#1A1A1A",
+    "text_secondary": "#4A4A4A",
+    "accent_sage": "#8A9A86",
+    "accent_taupe": "#BCAAA4",
+    "rules": {
+      "backgrounds": "Use warm beige (#F5F2EB) as the primary canvas. Use off-white/white for cards or alternating sections.",
+      "text": "Charcoal (#1A1A1A) for primary text for high contrast on beige. No pure black.",
+      "accents": "Use muted sage/olive or soft taupe sparingly for hover states, tags, or graphic elements."
+    }
+  },
+  "visual_enhancers": {
+    "shadows": "Very subtle, diffuse ambient shadows. shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]",
+    "borders": "1px solid rgba(26,26,26,0.1) for structure, avoiding heavy boxes.",
+    "border_radius": "rounded-none or minimal rounded-sm (2px) to maintain an architectural, premium feel.",
+    "hover_effects": "Image zoom on hover (scale-105 with smooth transform). Text color fade or underline reveal for links."
+  },
+  "components": {
+    "header": {
+      "layout": "Fixed top, backdrop-blur-xl bg-[#F5F2EB]/80, border-b border-black/5. z-50.",
+      "elements": "Brand Logo/Name left, Nav links center (hidden on mobile), CTA button right (Book a Consultation). Hamburger menu on mobile.",
+      "cta_button": "Pill-shaped or crisp rectangular, bg-[#1A1A1A] text-white hover:bg-[#1A1A1A]/80 transition-colors."
+    },
+    "hero_section": {
+      "layout": "Full viewport height (min-h-screen) with a staggered layout.",
+      "elements": "Kinetic typography headline with line-by-line masked reveal. Interactive Before/After slider taking up substantial grid space.",
+      "motion": "Parallax scroll effect on the main hero assets."
+    },
+    "before_after_slider": {
+      "library": "react-compare-slider",
+      "instruction": "Use ReactCompareSlider component to compare a 3D CAD render and a Real photo. This is the centerpiece of the portfolio."
+    },
+    "marquee": {
+      "library": "react-fast-marquee",
+      "style": "Slow, editorial ribbon. Pale sage background with dark olive/charcoal text. Serif font, large tracking, uppercase. Text: 'PASSION OVER PROFESSION • K K DESIGNERS • BESPOKE LIVING EXPERIENCES • '"
+    },
+    "services_bento": {
+      "layout": "Grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-8.",
+      "cards": "Cardless or minimal 1px border. Heavy use of high-resolution image backgrounds with overlay, or clean typography-led cards with image revealing on hover."
+    },
+    "portfolio_tabs": {
+      "layout": "Custom tab switcher (no standard Shadcn tabs, use text-based minimal links with active underline).",
+      "grid": "Tetris grid layout (Mode A). Asymmetric image sizes. col-span-8 row-span-2 for hero shots, col-span-4 for details."
+    },
+    "contact_form": {
+      "behavior": "Frontend only. Build a WhatsApp URL scheme on submit: https://wa.me/<PHONE_NUMBER>?text=<ENCODED_MESSAGE>. Do not use a backend.",
+      "fields": "Name, Phone/WhatsApp, Location, Project Type (Dropdown), Design Style (Dropdown)."
+    }
+  },
+  "motion": {
+    "smooth_scroll": "Lenis is MANDATORY. Initialize in a wrapper component for the entire app.",
+    "scroll_reveals": "Framer Motion. Use staggered fade-up (y: 30, opacity: 0 -> y: 0, opacity: 1) for typography and images as they enter viewport.",
+    "micro_interactions": "Hover states on all images (subtle scale). Button hover states (color invert or slide-up text)."
+  },
+  "layouts": {
+    "spacing": "Generous. Use py-24 or py-32 for section padding. gap-8 to gap-16 in grids.",
+    "alignment": "Optical alignment. Left-align dense text and headings. Asymmetrical placement of images to create a 'magazine' feel."
+  },
+  "media": {
+    "image_urls": {
+      "hero_living_room": {
+        "url": "https://images.pexels.com/photos/28853362/pexels-photo-28853362.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Hero section large image - Luxury modern living room, beige tones"
+      },
+      "render_before": {
+        "url": "https://images.unsplash.com/photo-1724582586529-62622e50c0b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBhcmNoaXRlY3R1cmFsJTIwbGlnaHRpbmclMjBtb2Rlcm4lMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTc4Njk4MDM4NXww&ixlib=rb-4.1.0&q=85",
+        "description": "3D Render CAD layout (Before) for the Compare Slider"
+      },
+      "real_after": {
+        "url": "https://images.unsplash.com/photo-1666585607888-3f6fe0b323d8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODR8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBhcmNoaXRlY3R1cmFsJTIwbGlnaHRpbmclMjBtb2Rlcm4lMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTc4Njk4MDM4NXww&ixlib=rb-4.1.0&q=85",
+        "description": "Real finished site (After) for the Compare Slider"
+      },
+      "founder_portrait": {
+        "url": "https://images.pexels.com/photos/7580944/pexels-photo-7580944.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Akshada Founder Portrait - South Asian woman architect"
+      },
+      "service_3d": {
+        "url": "https://images.unsplash.com/photo-1678762200388-51e11225d4de?crop=entropy&cs=srgb&fm=jpg",
+        "description": "3D Visualisation & CAD Layouts service card image"
+      },
+      "service_execution": {
+        "url": "https://images.pexels.com/photos/18672134/pexels-photo-18672134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Turnkey Execution & Site Supervision service card image (Raw site)"
+      },
+      "service_styling": {
+        "url": "https://images.pexels.com/photos/10919439/pexels-photo-10919439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Bespoke Styling & Texture Art service card image (Bathroom/Textures)"
+      },
+      "service_residential": {
+        "url": "https://images.unsplash.com/photo-1599696848652-f0ff23bc911f?crop=entropy&cs=srgb&fm=jpg",
+        "description": "Bungalow & Residential Interiors service card image"
+      },
+      "portfolio_1": {
+        "url": "https://images.pexels.com/photos/8135526/pexels-photo-8135526.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Portfolio item - Luxury bedroom/washroom"
+      },
+      "portfolio_2": {
+        "url": "https://images.pexels.com/photos/33685863/pexels-photo-33685863.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Portfolio item - Minimalist luxury textures"
+      },
+      "portfolio_3": {
+        "url": "https://images.pexels.com/photos/13722886/pexels-photo-13722886.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Portfolio item - Modern Living Room"
+      },
+      "portfolio_4": {
+        "url": "https://images.unsplash.com/photo-1564078516393-cf04bd966897?crop=entropy&cs=srgb&fm=jpg",
+        "description": "Portfolio item - Chaise couch window"
+      }
+    }
+  },
+  "accessibility": {
+    "contrast": "Ensure #1A1A1A text over #F5F2EB meets APCA contrast standards. Do not use fully transparent overlays over images if text is on top; use bg-black/40 or bg-white/60.",
+    "motion": "Respect prefers-reduced-motion for Framer Motion reveals.",
+    "testing": "All interactive elements (tabs, forms, buttons) must have data-testid attributes."
+  },
+  "instructions_to_main_agent": [
+    "This is a frontend-only portfolio app.",
+    "Use Tailwind CSS for styling. No plain CSS for layout.",
+    "You MUST install `lucide-react`, `framer-motion`, `@studio-freight/react-lenis`, `react-fast-marquee`, and `react-compare-slider`.",
+    "Do NOT use HTML <form> standard submission, intercept it and open a WhatsApp wa.me link with form values prefilled.",
+    "Design should look extremely premium—think Awwwards. Utilize negative space, large typography, and precise grid alignments.",
+    "Implement the 'Tetris' Bento grid strategy for the portfolio showcase tab.",
+    "Use the exact provided image URLs. NEVER use placeholders.",
+    "Include a floating WhatsApp chat button fixed to the bottom right of the screen.",
+    "Do not center-align everything. Rely on asymmetrical left-alignment for a modern architectural editorial feel."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Do not apply `transition: all` anywhere. Specify properties.",
+    "Avoid generic centered layouts and simplistic gradients.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Do not apply global text-align: center on the .App container.",
+    "Use modern button styles. For this app, stark minimalist borders or solid dark fills.",
+    "Every interaction needs micro-animations (hover, focus).",
+    "Add data-testid attributes to all key elements for testing."
+  ]
+}
