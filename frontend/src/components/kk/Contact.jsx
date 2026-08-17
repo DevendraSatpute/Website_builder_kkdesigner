@@ -3,8 +3,6 @@ import { Instagram, MapPin, Mail, Send, CheckCircle2 } from "lucide-react";
 import { Reveal, Chapter } from "./Reveal";
 import { EMAIL, INSTAGRAM_URL } from "./data";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
-
 const PROJECT_TYPES = ["Bungalow / Villa", "Apartment", "Luxury Washroom", "3D Render Only"];
 const STYLES = ["Modern Minimal", "Contemporary Luxury", "Warm Traditional", "Japandi / Earthy", "Not sure yet — guide me"];
 
@@ -14,29 +12,17 @@ const inputCls =
 export default function Contact() {
     const [form, setForm] = useState({ name: "", phone: "", location: "", type: PROJECT_TYPES[0], style: STYLES[0] });
     const [status, setStatus] = useState("idle");
+    const [draftUrl, setDraftUrl] = useState("");
     const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
-    const submit = async (e) => {
+    const submit = (e) => {
         e.preventDefault();
-        setStatus("sending");
-        try {
-            const res = await fetch(`${API}/enquiry`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name: form.name,
-                    phone: form.phone,
-                    location: form.location,
-                    project_type: form.type,
-                    style: form.style,
-                }),
-            });
-            if (!res.ok) throw new Error(await res.text());
-            setStatus("sent");
-            setForm({ name: "", phone: "", location: "", type: PROJECT_TYPES[0], style: STYLES[0] });
-        } catch {
-            setStatus("error");
-        }
+        const subject = `New enquiry — ${form.name} (${form.type})`;
+        const body = `Hi Akshada, I'm ${form.name} from ${form.location}. I'm planning a ${form.type} project and I like the "${form.style}" style. I'd like to book a consultation. You can reach me on ${form.phone}.`;
+        const url = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        setDraftUrl(url);
+        setStatus("opened");
+        window.location.href = url;
     };
 
     return (
@@ -52,8 +38,8 @@ export default function Contact() {
                         </Reveal>
                         <Reveal delay={0.15}>
                             <p className="mt-6 text-sm leading-relaxed text-white/60 max-w-md">
-                                Tell us a little about your project — your enquiry lands straight in our inbox, and
-                                Akshada replies personally.
+                                Tell us a little about your project — the form opens a ready-made email draft in
+                                your mail app, addressed to Akshada. Just press send.
                             </p>
                         </Reveal>
                         <Reveal delay={0.25} className="mt-10 space-y-5">
@@ -89,19 +75,30 @@ export default function Contact() {
                     </div>
 
                     <Reveal delay={0.2} className="lg:col-span-7">
-                        {status === "sent" ? (
+                        {status === "opened" ? (
                             <div data-testid="form-success-message" className="border border-[#8A9A86]/50 p-10 flex flex-col items-start gap-4">
                                 <CheckCircle2 size={28} className="text-[#8A9A86]" />
-                                <p className="font-serif text-3xl">Thank you — enquiry sent.</p>
+                                <p className="font-serif text-3xl">Your draft is ready.</p>
                                 <p className="text-sm text-white/60 leading-relaxed max-w-md">
-                                    Your details are on their way to our inbox. Akshada will get back to you shortly.
+                                    We've opened your email app with everything pre-filled — just press send. If
+                                    nothing opened, tap the button below to try again.
                                 </p>
+                                <a
+                                    href={draftUrl}
+                                    data-testid="open-draft-link"
+                                    className="inline-flex items-center gap-3 bg-[#F5F2EB] text-[#1A1A1A] text-[11px] uppercase tracking-[0.2em] px-7 py-4 hover:bg-[#8A9A86] transition-colors duration-300"
+                                >
+                                    Open Email Draft
+                                </a>
                                 <button
                                     data-testid="form-send-another-btn"
-                                    onClick={() => setStatus("idle")}
+                                    onClick={() => {
+                                        setStatus("idle");
+                                        setForm({ name: "", phone: "", location: "", type: PROJECT_TYPES[0], style: STYLES[0] });
+                                    }}
                                     className="mt-2 text-[11px] uppercase tracking-[0.2em] border-b border-[#8A9A86] pb-1 hover:text-[#8A9A86] transition-colors duration-300"
                                 >
-                                    Send another enquiry
+                                    Fill the form again
                                 </button>
                             </div>
                         ) : (
@@ -119,18 +116,12 @@ export default function Contact() {
                                         <option key={s}>{s}</option>
                                     ))}
                                 </select>
-                                {status === "error" && (
-                                    <p data-testid="form-error-message" className="sm:col-span-2 text-sm text-[#BCAAA4]">
-                                        Something went wrong — please try again or email us directly at {EMAIL}.
-                                    </p>
-                                )}
                                 <button
                                     type="submit"
-                                    disabled={status === "sending"}
                                     data-testid="form-submit-button"
-                                    className="sm:col-span-2 group inline-flex items-center justify-center gap-3 bg-[#F5F2EB] text-[#1A1A1A] text-[12px] uppercase tracking-[0.2em] px-8 py-5 hover:bg-[#8A9A86] transition-colors duration-300 disabled:opacity-60"
+                                    className="sm:col-span-2 group inline-flex items-center justify-center gap-3 bg-[#F5F2EB] text-[#1A1A1A] text-[12px] uppercase tracking-[0.2em] px-8 py-5 hover:bg-[#8A9A86] transition-colors duration-300"
                                 >
-                                    {status === "sending" ? "Sending…" : "Send Enquiry"}
+                                    Send Enquiry
                                     <Send size={15} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
                                 </button>
                             </form>

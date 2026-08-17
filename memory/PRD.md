@@ -40,6 +40,14 @@ Build a clean, modern, high-converting single-page portfolio website for K K Des
 - Contact form now posts to backend with success/error states (no WhatsApp prefill)
 - Verified: curl POST /api/enquiry returns success + email_id; form submits end-to-end with success UI
 
+## Updates (2026-07, round 4 — bug fix)
+- Bug reported: "Something went wrong" on Send Enquiry (caused by backend email dependency + strict phone min-length validation, e.g. phone "737")
+- Fix per user request: form now uses pure mailto: — clicking Send Enquiry opens the visitor's own email app (mobile app or browser mail client) with a pre-filled draft to kkdesigners15@gmail.com
+- Draft format: Subject "New enquiry — {name} ({project_type})"; Body "Hi Akshada, I'm {name} from {location}. I'm planning a {project_type} project and I like the "{style}" style. I'd like to book a consultation. You can reach me on {phone}."
+- Fallback "Open Email Draft" button (data-testid open-draft-link) shown after submit in case the mail app didn't open
+- Backend /api/enquiry endpoint still exists but is no longer called by the form
+- Verified in browser with the exact failing inputs (Shruti / 737 / Pune): mailto URL generated correctly, draft panel shown
+
 ## Known Gaps / Backlog
 - P0: Replace placeholder WhatsApp number (currently 919876543210 in src/components/kk/data.js) with Akshada's real number
 - P1: Replace stock images with real project photos and real founder portrait
