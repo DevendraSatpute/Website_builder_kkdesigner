@@ -36,7 +36,7 @@ export default function Philosophy() {
                             process and trust the designer's vision."
                         </p>
                         <footer className="mt-8 text-[11px] uppercase tracking-[0.25em] text-[#F5F2EB]/70">
-                            Akshada Kisan Thorat — Founder, K K Designers
+                            Akshada Thorat — Founder, K K Designers
                         </footer>
                     </blockquote>
                 </div>

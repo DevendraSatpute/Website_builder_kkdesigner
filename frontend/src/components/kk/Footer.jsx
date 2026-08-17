@@ -1,4 +1,4 @@
-import { INSTAGRAM_URL, WHATSAPP_NUMBER } from "./data";
+import { INSTAGRAM_URL, EMAIL } from "./data";
 import { scrollToSection } from "./Navbar";
 
 export default function Footer() {
@@ -20,8 +20,8 @@ export default function Footer() {
                     <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" data-testid="footer-instagram-link" className="hover:text-[#1A1A1A] transition-colors duration-300">
                         Instagram
                     </a>
-                    <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer" data-testid="footer-whatsapp-link" className="hover:text-[#1A1A1A] transition-colors duration-300">
-                        WhatsApp
+                    <a href={`mailto:${EMAIL}`} data-testid="footer-email-link" className="hover:text-[#1A1A1A] transition-colors duration-300">
+                        Email
                     </a>
                 </div>
                 <p className="text-[11px] text-[#1A1A1A]/40">© 2026 K K Designers. All rights reserved.</p>

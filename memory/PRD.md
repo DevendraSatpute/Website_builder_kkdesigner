@@ -32,6 +32,14 @@ Build a clean, modern, high-converting single-page portfolio website for K K Des
 - Instagram URL updated to https://www.instagram.com/k_k_designers/?hl=en
 - New "Fresh from the studio" Instagram section (chapter 06, above footer): auto-fetching grid via Behold JSON feed when REACT_APP_BEHOLD_FEED_ID is set in frontend/.env; until then shows curated fallback tiles linking to the profile. Requires user to create a free Behold account (behold.so), connect @k_k_designers, and share the feed ID.
 
+## Updates (2026-07, round 3)
+- WhatsApp fully removed (float button deleted, footer link replaced) per user request
+- Lead capture switched to EMAIL: POST /api/enquiry (FastAPI) stores enquiry in MongoDB `enquiries` and sends notification email to kkdesigners15@gmail.com via Emergent managed Resend (EMERGENT_EMAIL_KEY, EMAIL_FROM_NAME="K K Designers", EMAIL_REPLY_TO set). Server-side template + guardrail gate per Resend playbook.
+- Founder photo replaced with second uploaded photo, cropped to a 4:5 close-up portrait saved at /app/frontend/public/founder.jpg (referenced as /founder.jpg)
+- Name changed site-wide: "Akshada Kisan Thorat" → "Akshada Thorat"
+- Contact form now posts to backend with success/error states (no WhatsApp prefill)
+- Verified: curl POST /api/enquiry returns success + email_id; form submits end-to-end with success UI
+
 ## Known Gaps / Backlog
 - P0: Replace placeholder WhatsApp number (currently 919876543210 in src/components/kk/data.js) with Akshada's real number
 - P1: Replace stock images with real project photos and real founder portrait

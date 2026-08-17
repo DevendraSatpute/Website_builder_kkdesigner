@@ -11,23 +11,23 @@ export default function About() {
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                     <Reveal className="lg:col-span-5 relative">
                         <div className="absolute -bottom-4 -right-4 w-full h-full bg-[#BCAAA4]/30 pointer-events-none" />
-                        <div className="relative overflow-hidden group">
+                        <div className="relative overflow-hidden group aspect-[4/5]">
                             <img
                                 src={IMAGES.founder}
-                                alt="Akshada Kisan Thorat — Founder, K K Designers"
+                                alt="Akshada Thorat — Founder, K K Designers"
                                 data-testid="founder-portrait"
-                                className="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                         </div>
                         <p className="mt-5 text-[11px] uppercase tracking-[0.2em] text-[#1A1A1A]/50">
-                            Akshada Kisan Thorat — Interior Designer & 3D Visualiser
+                            Akshada Thorat — Interior Designer & 3D Visualiser
                         </p>
                     </Reveal>
 
                     <div className="lg:col-span-7 lg:pt-6">
                         <Reveal delay={0.1}>
                             <h2 className="font-serif font-light text-4xl sm:text-5xl leading-tight tracking-tight" data-testid="about-title">
-                                Meet <em className="italic text-[#8A9A86]">Akshada</em> Kisan Thorat
+                                Meet <em className="italic text-[#8A9A86]">Akshada</em> Thorat
                             </h2>
                         </Reveal>
                         <Reveal delay={0.2}>

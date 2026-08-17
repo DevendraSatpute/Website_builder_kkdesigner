@@ -54,7 +54,7 @@ export default function Hero() {
                         className="mt-8 max-w-md text-[15px] leading-relaxed text-[#4A4A4A]"
                         data-testid="hero-subheadline"
                     >
-                        Led by Akshada Kisan Thorat — bringing high-end 3D visual concepts to life through hands-on site
+                        Led by Akshada Thorat — bringing high-end 3D visual concepts to life through hands-on site
                         execution in Pune.
                     </motion.p>
 

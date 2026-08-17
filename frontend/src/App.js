@@ -11,7 +11,6 @@ import Philosophy from "@/components/kk/Philosophy";
 import Contact from "@/components/kk/Contact";
 import InstagramFeed from "@/components/kk/InstagramFeed";
 import Footer from "@/components/kk/Footer";
-import WhatsAppFloat from "@/components/kk/WhatsAppFloat";
 
 function App() {
     useEffect(() => {
@@ -44,7 +43,6 @@ function App() {
                 <InstagramFeed />
             </main>
             <Footer />
-            <WhatsAppFloat />
         </div>
     );
 }
