@@ -22,9 +22,15 @@ Build a clean, modern, high-converting single-page portfolio website for K K Des
 - data-testid on all interactive elements
 
 ## Implemented (2026-07)
-- Full single-page site: kinetic masked hero, editorial marquee, About founder, 4 services, 3-tab portfolio (compare slider, raw-to-final tetris grid, feature highlights grid), philosophy quote banner + 2 callouts, dark contact section with WhatsApp form, footer, WhatsApp float
+- Full single-page site: kinetic masked hero, editorial marquee, About founder, 4 services, 3-tab portfolio (compare slider, raw-to-final tetris grid, feature highlights grid), philosophy quote banner + 2 callouts, dark contact section with WhatsApp form, Instagram section, footer, WhatsApp float
 - Lenis momentum scrolling, framer-motion scroll reveals + tab transitions, hero parallax
 - Verified: all sections screenshot-checked, tabs switch, form opens wa.me with correct pre-filled text, no console errors
+
+## Updates (2026-07, round 2)
+- WhatsApp number updated to real number: +91 90282 02970 (919028202970) — form, float button, footer links all use it
+- Founder portrait replaced with Akshada's real photo (uploaded asset, used as-is)
+- Instagram URL updated to https://www.instagram.com/k_k_designers/?hl=en
+- New "Fresh from the studio" Instagram section (chapter 06, above footer): auto-fetching grid via Behold JSON feed when REACT_APP_BEHOLD_FEED_ID is set in frontend/.env; until then shows curated fallback tiles linking to the profile. Requires user to create a free Behold account (behold.so), connect @k_k_designers, and share the feed ID.
 
 ## Known Gaps / Backlog
 - P0: Replace placeholder WhatsApp number (currently 919876543210 in src/components/kk/data.js) with Akshada's real number

@@ -9,6 +9,7 @@ import Services from "@/components/kk/Services";
 import Portfolio from "@/components/kk/Portfolio";
 import Philosophy from "@/components/kk/Philosophy";
 import Contact from "@/components/kk/Contact";
+import InstagramFeed from "@/components/kk/InstagramFeed";
 import Footer from "@/components/kk/Footer";
 import WhatsAppFloat from "@/components/kk/WhatsAppFloat";
 
@@ -40,6 +41,7 @@ function App() {
                 <Portfolio />
                 <Philosophy />
                 <Contact />
+                <InstagramFeed />
             </main>
             <Footer />
             <WhatsAppFloat />
