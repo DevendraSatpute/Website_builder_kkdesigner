@@ -1,0 +1,57 @@
+# Local container test — run from repo root:
+#   docker compose -f infra/docker-compose.yml up --build
+#
+# Website:  http://localhost:8080
+# Admin:    http://localhost:8080/admin   passcode: kkd-local-admin
+# API:      http://localhost:8000/api/
+
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - kk_mongo:/data/db
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 8
+
+  api:
+    build:
+      context: ..
+      dockerfile: infra/backend/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      MONGO_URL: mongodb://mongo:27017
+      DB_NAME: kkdesigners
+      ADMIN_DASH_KEY: kkd-local-admin
+      CORS_ORIGINS: http://localhost:8080,http://127.0.0.1:8080
+      # server.py still reads these at import time even though enquiry is store-only
+      EMERGENT_EMAIL_KEY: local-unused
+      EMAIL_FROM_NAME: K K Designers
+      OWNER_EMAIL: kkdesigners15@gmail.com
+      EMAIL_REPLY_TO: kkdesigners15@gmail.com
+    ports:
+      - "8000:8000"
+
+  web:
+    build:
+      context: ..
+      dockerfile: infra/frontend/Dockerfile
+      args:
+        REACT_APP_BACKEND_URL: ""
+        REACT_APP_BEHOLD_FEED_ID: "${REACT_APP_BEHOLD_FEED_ID:-}"
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "8080:80"
+
+volumes:
+  kk_mongo:

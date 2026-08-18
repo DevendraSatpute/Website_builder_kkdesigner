@@ -8,7 +8,6 @@ export const IMAGES = {
         "https://images.unsplash.com/photo-1724582586529-62622e50c0b3?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200",
     realAfter:
         "https://images.unsplash.com/photo-1666585607888-3f6fe0b323d8?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200",
-    founder: "/founder.jpg",
     service3d: "https://images.unsplash.com/photo-1678762200388-51e11225d4de?crop=entropy&cs=srgb&fm=jpg&q=85&w=900",
     serviceExecution:
         "https://images.pexels.com/photos/18672134/pexels-photo-18672134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",

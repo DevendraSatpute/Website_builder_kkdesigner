@@ -1,9 +1,40 @@
+import { useEffect, useState } from "react";
 import { Reveal, Chapter } from "./Reveal";
-import { IMAGES } from "./data";
 
 const TRAITS = ["Hands-on Site Execution", "Space Optimisation", "Colour Psychology", "Photorealistic 3D"];
+const API = `${process.env.REACT_APP_BACKEND_URL || ""}/api`;
 
 export default function About() {
+    const [portraitSrc, setPortraitSrc] = useState("");
+
+    useEffect(() => {
+        let revoked = "";
+        let cancelled = false;
+
+        (async () => {
+            try {
+                const grant = await fetch(`${API}/media/grant`, { cache: "no-store" });
+                if (!grant.ok) return;
+                const { t } = await grant.json();
+                if (!t || cancelled) return;
+                const img = await fetch(`${API}/media/i/${encodeURIComponent(t)}`, { cache: "no-store" });
+                if (!img.ok) return;
+                const blob = await img.blob();
+                if (cancelled) return;
+                const url = URL.createObjectURL(blob);
+                revoked = url;
+                setPortraitSrc(url);
+            } catch {
+                /* keep empty placeholder — never fall back to /founder.jpg */
+            }
+        })();
+
+        return () => {
+            cancelled = true;
+            if (revoked) URL.revokeObjectURL(revoked);
+        };
+    }, []);
+
     return (
         <section id="about" data-testid="about-section" className="py-28 lg:py-36">
             <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
@@ -11,13 +42,19 @@ export default function About() {
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                     <Reveal className="lg:col-span-5 relative">
                         <div className="absolute -bottom-4 -right-4 w-full h-full bg-[#BCAAA4]/30 pointer-events-none" />
-                        <div className="relative overflow-hidden group aspect-[4/5]">
-                            <img
-                                src={IMAGES.founder}
-                                alt="Akshada Thorat — Founder, K K Designers"
+                        <div
+                            className="relative overflow-hidden group aspect-[4/5] select-none bg-[#E8E2D6]"
+                            onContextMenu={(e) => e.preventDefault()}
+                        >
+                            <div
                                 data-testid="founder-portrait"
-                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                role="img"
+                                aria-label="Akshada Thorat — Founder, K K Designers"
+                                draggable={false}
+                                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                style={portraitSrc ? { backgroundImage: `url("${portraitSrc}")` } : undefined}
                             />
+                            <div className="absolute inset-0" aria-hidden="true" />
                         </div>
                         <p className="mt-5 text-[11px] uppercase tracking-[0.2em] text-[#1A1A1A]/50">
                             Akshada Thorat — Interior Designer & 3D Visualiser
