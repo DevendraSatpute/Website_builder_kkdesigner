@@ -48,6 +48,14 @@ Build a clean, modern, high-converting single-page portfolio website for K K Des
 - Backend /api/enquiry endpoint still exists but is no longer called by the form
 - Verified in browser with the exact failing inputs (Shruti / 737 / Pune): mailto URL generated correctly, draft panel shown
 
+## Updates (2026-07, round 5)
+- Enquiry Backup: form now silently POSTs a copy of every enquiry to POST /api/enquiry (store-only, no email send) before opening the mailto draft; phone validation relaxed to min 3 chars
+- Enquiry Dashboard: new private page at /admin — passcode gate (server-checked X-Admin-Key header on GET /api/enquiries, key in backend/.env as ADMIN_DASH_KEY="kkd-s7-admin-2026-9xq4", stored in sessionStorage). Shows enquiry cards (name, phone with tel: link, location, project type, style, date), count, refresh, logout
+- App.js now uses react-router: "/" main site, "/admin" dashboard
+- Developer credit in footer: "Developed by Shruti Khedkar — Connect on LinkedIn" → https://in.linkedin.com/in/shruti-khedkar-34357b158
+- frontend/.env: REACT_APP_BEHOLD_FEED_ID= slot added (empty — awaiting user's Behold feed ID for live Instagram posts; user must create the Behold account themselves as it requires their Instagram login)
+- Verified: 401 without key / list with key via curl; form submit silently saved enquiry ("Backup Test"); /admin wrong passcode rejected, correct passcode shows dashboard; footer LinkedIn href correct
+
 ## Known Gaps / Backlog
 - P0: Replace placeholder WhatsApp number (currently 919876543210 in src/components/kk/data.js) with Akshada's real number
 - P1: Replace stock images with real project photos and real founder portrait

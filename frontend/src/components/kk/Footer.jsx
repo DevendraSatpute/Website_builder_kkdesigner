@@ -1,3 +1,4 @@
+import { Linkedin } from "lucide-react";
 import { INSTAGRAM_URL, EMAIL } from "./data";
 import { scrollToSection } from "./Navbar";
 
@@ -24,7 +25,19 @@ export default function Footer() {
                         Email
                     </a>
                 </div>
-                <p className="text-[11px] text-[#1A1A1A]/40">© 2026 K K Designers. All rights reserved.</p>
+                <div className="text-[11px] text-[#1A1A1A]/40 md:text-right">
+                    <p>© 2026 K K Designers. All rights reserved.</p>
+                    <a
+                        href="https://in.linkedin.com/in/shruti-khedkar-34357b158"
+                        target="_blank"
+                        rel="noreferrer"
+                        data-testid="developer-linkedin-link"
+                        className="mt-2 inline-flex items-center gap-2 hover:text-[#1A1A1A] transition-colors duration-300"
+                    >
+                        <Linkedin size={12} />
+                        Developed by Shruti Khedkar — Connect on LinkedIn
+                    </a>
+                </div>
             </div>
         </footer>
     );

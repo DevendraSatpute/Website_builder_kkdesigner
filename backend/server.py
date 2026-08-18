@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -147,7 +147,7 @@ class StatusCheckCreate(BaseModel):
 
 class Enquiry(BaseModel):
     name: str = Field(min_length=1, max_length=120)
-    phone: str = Field(min_length=5, max_length=20)
+    phone: str = Field(min_length=3, max_length=20)
     location: str = Field(min_length=1, max_length=160)
     project_type: str = Field(min_length=1, max_length=60)
     style: str = Field(min_length=1, max_length=80)
@@ -164,32 +164,15 @@ async def create_enquiry(input: Enquiry):
     doc["id"] = str(uuid.uuid4())
     doc["created_at"] = datetime.now(timezone.utc).isoformat()
     await db.enquiries.insert_one(doc)
+    return {"status": "success", "id": doc["id"]}
 
-    row = lambda label, value: (
-        f'<tr><td style="padding:8px 16px 8px 0;color:#8A9A86;font-size:12px;'
-        f'letter-spacing:2px;text-transform:uppercase;vertical-align:top">{label}</td>'
-        f'<td style="padding:8px 0;font-size:14px;color:#1A1A1A">{escape(value)}</td></tr>'
-    )
-    html = (
-        '<table role="presentation" width="100%" style="background:#F5F2EB;padding:24px">'
-        '<tr><td style="font-family:Georgia,serif;font-size:22px;color:#1A1A1A;padding-bottom:16px">'
-        'New Website Enquiry</td></tr>'
-        '<tr><td><table role="presentation">'
-        + row("Name", input.name)
-        + row("Phone", input.phone)
-        + row("Location", input.location)
-        + row("Project Type", input.project_type)
-        + row("Design Style", input.style)
-        + '</table></td></tr>'
-        f'<tr><td style="padding-top:20px;font-size:12px;color:#888;font-family:Arial,sans-serif">'
-        f'Sent by the {escape(EMAIL_FROM_NAME)} website contact form.</td></tr></table>'
-    )
-    email_id = await send_email(
-        to=OWNER_EMAIL,
-        subject=f"New enquiry — {input.name} ({input.project_type})",
-        html=html,
-    )
-    return {"status": "success", "id": doc["id"], "email_id": email_id}
+
+@api_router.get("/enquiries")
+async def list_enquiries(request: Request):
+    if request.headers.get("x-admin-key") != os.environ["ADMIN_DASH_KEY"]:
+        raise HTTPException(status_code=401, detail="Invalid admin key")
+    docs = await db.enquiries.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
+    return {"enquiries": docs}
 
 
 @api_router.post("/status", response_model=StatusCheck)

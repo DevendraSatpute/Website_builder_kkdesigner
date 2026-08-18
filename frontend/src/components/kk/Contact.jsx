@@ -3,6 +3,8 @@ import { Instagram, MapPin, Mail, Send, CheckCircle2 } from "lucide-react";
 import { Reveal, Chapter } from "./Reveal";
 import { EMAIL, INSTAGRAM_URL } from "./data";
 
+const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+
 const PROJECT_TYPES = ["Bungalow / Villa", "Apartment", "Luxury Washroom", "3D Render Only"];
 const STYLES = ["Modern Minimal", "Contemporary Luxury", "Warm Traditional", "Japandi / Earthy", "Not sure yet — guide me"];
 
@@ -20,6 +22,17 @@ export default function Contact() {
         const subject = `New enquiry — ${form.name} (${form.type})`;
         const body = `Hi Akshada, I'm ${form.name} from ${form.location}. I'm planning a ${form.type} project and I like the "${form.style}" style. I'd like to book a consultation. You can reach me on ${form.phone}.`;
         const url = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        fetch(`${API}/enquiry`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: form.name,
+                phone: form.phone,
+                location: form.location,
+                project_type: form.type,
+                style: form.style,
+            }),
+        }).catch(() => {});
         setDraftUrl(url);
         setStatus("opened");
         window.location.href = url;
