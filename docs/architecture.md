@@ -2,7 +2,7 @@
 
 Software-engineering view of this repository: what problem it solves, which platform it sits on, how the system is designed, and which features are actually live versus leftover from the template.
 
-Related: [system-design.md](system-design.md) (C4 + flows) · [prod-serverless.md](prod-serverless.md) (AWS/GCP + domain) · [../infra/README.md](../infra/README.md) (local Docker).
+Related: [system-design.md](system-design.md) (C4 + flows) · [prod-serverless.md](prod-serverless.md) (AWS/GCP + domain) · [frontend-for-backend-engineers.md](frontend-for-backend-engineers.md) (Node/Yarn/React) · [../infra/README.md](../infra/README.md) (local Docker).
 
 ---
 
