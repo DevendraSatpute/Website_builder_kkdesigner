@@ -1,11 +1,15 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
+from starlette.responses import FileResponse
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import re
 import ipaddress
 import logging
+import secrets
+import threading
+import time
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List
@@ -153,9 +157,55 @@ class Enquiry(BaseModel):
     style: str = Field(min_length=1, max_length=80)
 
 
+# Founder portrait is not in /public. Tokens are one-shot and expire.
+_PORTRAIT = ROOT_DIR / "private_media" / "p.jpg"
+_MEDIA_TTL_SEC = 45
+_media_lock = threading.Lock()
+_media_tokens: dict[str, float] = {}
+
+
+def _purge_media_tokens(now: float) -> None:
+    dead = [k for k, exp in _media_tokens.items() if exp < now]
+    for k in dead:
+        _media_tokens.pop(k, None)
+
+
 @api_router.get("/")
 async def root():
     return {"message": "Hello World"}
+
+
+@api_router.get("/media/grant")
+async def grant_media():
+    if not _PORTRAIT.is_file():
+        raise HTTPException(status_code=503, detail="Unavailable")
+    token = secrets.token_urlsafe(24)
+    now = time.time()
+    with _media_lock:
+        _purge_media_tokens(now)
+        _media_tokens[token] = now + _MEDIA_TTL_SEC
+    return {"t": token, "exp": _MEDIA_TTL_SEC}
+
+
+@api_router.get("/media/i/{token}")
+async def read_media(token: str):
+    now = time.time()
+    with _media_lock:
+        exp = _media_tokens.pop(token, None)
+    if exp is None or exp < now:
+        raise HTTPException(status_code=404, detail="Not found")
+    if not _PORTRAIT.is_file():
+        raise HTTPException(status_code=404, detail="Not found")
+    return FileResponse(
+        _PORTRAIT,
+        media_type="image/jpeg",
+        headers={
+            "Cache-Control": "no-store, no-cache, must-revalidate, private",
+            "Pragma": "no-cache",
+            "Content-Disposition": "inline; filename=p",
+            "X-Content-Type-Options": "nosniff",
+        },
+    )
 
 
 @api_router.post("/enquiry")

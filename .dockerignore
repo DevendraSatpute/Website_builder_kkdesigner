@@ -1,0 +1,14 @@
+.git
+**/node_modules
+frontend/build
+**/__pycache__
+**/.venv
+**/.env
+**/.env.*
+docs
+memory
+test_reports
+tests
+infra/terraform
+infra/k8s
+*.md
