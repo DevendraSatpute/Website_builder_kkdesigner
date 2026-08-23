@@ -32,6 +32,12 @@ export const IMAGES = {
     washroomVanity: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1200&auto=format&fit=crop",
     bedroomArch: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop",
     livingNeutral: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200&auto=format&fit=crop",
+    livingReal: "/living-area.jpeg",
+    kitchenDining: "/kitchen-dining.jpeg",
+    daughterRoom: "/daughter-room.jpeg",
+    masterBed: "/master-bed.jpeg",
+    masterTv: "/master-tv.jpeg",
+    masterWardrobe: "/master-wardrobe.jpeg",
 };
 
 export const SERVICES = [
@@ -70,15 +76,21 @@ export const RAW_TO_FINAL = [
     { src: IMAGES.rawStructure, tag: "Stage 02", title: "Raw Structure", span: "md:col-span-8 md:row-span-2" },
     { src: IMAGES.framing, tag: "Stage 03", title: "Wiring & Wood Framing", span: "md:col-span-4 md:row-span-1" },
     { src: IMAGES.serviceExecution, tag: "Stage 04", title: "Wall Texture & Finishes", span: "md:col-span-4 md:row-span-1" },
-    { src: IMAGES.portfolioLiving, tag: "Stage 05", title: "Lighting & Styling", span: "md:col-span-8 md:row-span-2" },
+    { src: IMAGES.masterTv, tag: "Stage 05", title: "Cove Lighting & TV Wall", span: "md:col-span-8 md:row-span-2" },
     { src: IMAGES.beigeLiving, tag: "Stage 06", title: "The Final Handover", span: "md:col-span-4 md:row-span-1" },
+];
+
+export const COMMERCIAL = [
+    { src: "/commercial-conference.jpeg", tag: "Commercial Offices", title: "Conference Suite — Marble Table & Linear Lighting", span: "md:col-span-7 md:row-span-2" },
+    { src: "/commercial-office.jpeg", tag: "Commercial Offices", title: "Director's Office — Certificate Wall & Executive Desk", span: "md:col-span-5 md:row-span-1" },
+    { src: "/commercial-lounge.jpeg", tag: "Commercial Offices", title: "Visitor Lounge — Fluted Glass & Warm Timber", span: "md:col-span-5 md:row-span-1" },
 ];
 
 export const HIGHLIGHTS = [
     { src: IMAGES.washroomMarble, tag: "Luxury Washrooms", title: "Marble Finishes & Brass Fixtures", span: "md:col-span-7 md:row-span-2" },
-    { src: IMAGES.portfolioLiving, tag: "Modern Living Rooms", title: "Custom TV Media Unit", span: "md:col-span-5 md:row-span-1" },
-    { src: IMAGES.bedroomArch, tag: "Bedrooms", title: "Custom Arch Headboard", span: "md:col-span-5 md:row-span-1" },
+    { src: IMAGES.livingReal, tag: "Modern Living Rooms", title: "Custom TV Media Unit & Mural Wall", span: "md:col-span-5 md:row-span-1" },
+    { src: IMAGES.masterBed, tag: "Bedrooms", title: "Master Bedroom — Halo Ceiling & Lounge Corner", span: "md:col-span-5 md:row-span-1" },
     { src: IMAGES.washroomVanity, tag: "Luxury Washrooms", title: "Floating Vanity & Cove Lighting", span: "md:col-span-4 md:row-span-1" },
-    { src: IMAGES.livingNeutral, tag: "Modern Living Rooms", title: "Ambient Strip Lighting", span: "md:col-span-4 md:row-span-1" },
-    { src: IMAGES.portfolioBedroom, tag: "Bedrooms", title: "Accent Wall Mural", span: "md:col-span-4 md:row-span-1" },
+    { src: IMAGES.kitchenDining, tag: "Kitchen & Dining", title: "Modular Kitchen & Dining — Cove Lighting", span: "md:col-span-4 md:row-span-1" },
+    { src: IMAGES.daughterRoom, tag: "Bedrooms", title: "Daughter's Room — Arched Wardrobe Wall", span: "md:col-span-4 md:row-span-1" },
 ];

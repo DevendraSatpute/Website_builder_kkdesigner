@@ -2,12 +2,13 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Reveal, Chapter } from "./Reveal";
 import CompareSlider from "./CompareSlider";
-import { IMAGES, RAW_TO_FINAL, HIGHLIGHTS } from "./data";
+import { IMAGES, RAW_TO_FINAL, HIGHLIGHTS, COMMERCIAL } from "./data";
 
 const TABS = [
     { id: "accuracy", label: "3D Render vs Real Site" },
     { id: "journey", label: "Raw Stage to Final Touch" },
     { id: "highlights", label: "Feature Highlights" },
+    { id: "commercial", label: "Commercial Offices" },
 ];
 
 const GridCard = ({ item, testId }) => (
@@ -106,6 +107,13 @@ export default function Portfolio() {
                             <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[260px] gap-5" data-testid="portfolio-highlights-grid">
                                 {HIGHLIGHTS.map((item, i) => (
                                     <GridCard key={item.title} item={item} testId={`highlight-card-${i}`} />
+                                ))}
+                            </div>
+                        )}
+                        {tab === "commercial" && (
+                            <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[260px] gap-5" data-testid="portfolio-commercial-grid">
+                                {COMMERCIAL.map((item, i) => (
+                                    <GridCard key={item.title} item={item} testId={`commercial-card-${i}`} />
                                 ))}
                             </div>
                         )}

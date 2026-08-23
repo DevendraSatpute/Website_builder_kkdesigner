@@ -4,12 +4,12 @@ import { Reveal, Chapter } from "./Reveal";
 import { INSTAGRAM_URL, IMAGES } from "./data";
 
 const FALLBACK_POSTS = [
-    { src: IMAGES.portfolioLiving, caption: "Custom TV media unit with ambient strip lighting" },
+    { src: IMAGES.livingReal, caption: "Custom TV media unit with mural wall & ambient lighting" },
     { src: IMAGES.washroomMarble, caption: "Luxury washroom — marble finishes & brass fixtures" },
-    { src: IMAGES.bedroomArch, caption: "Bedroom with custom arch headboard" },
+    { src: IMAGES.masterWardrobe, caption: "Master bedroom — arched wardrobe & lounge corner" },
     { src: IMAGES.beigeLiving, caption: "Warm beige living space, final handover" },
     { src: IMAGES.portfolioTexture, caption: "Bespoke wall textures & minimalist detailing" },
-    { src: IMAGES.livingNeutral, caption: "Neutral modern living room, cove lighting" },
+    { src: IMAGES.kitchenDining, caption: "Modular kitchen & dining with cove lighting" },
 ];
 
 export default function InstagramFeed() {

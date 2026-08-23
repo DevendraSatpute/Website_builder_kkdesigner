@@ -56,6 +56,14 @@ Build a clean, modern, high-converting single-page portfolio website for K K Des
 - frontend/.env: REACT_APP_BEHOLD_FEED_ID= slot added (empty — awaiting user's Behold feed ID for live Instagram posts; user must create the Behold account themselves as it requires their Instagram login)
 - Verified: 401 without key / list with key via curl; form submit silently saved enquiry ("Backup Test"); /admin wrong passcode rejected, correct passcode shows dashboard; footer LinkedIn href correct
 
+## Updates (2026-07, round 6 — real project photos)
+- Commercial Offices: new 4th portfolio tab with 3 real photos (conference suite, director's office, visitor lounge) saved in frontend/public as commercial-*.jpeg; "Commercial Office" added to contact form project types
+- Living area: real photo /living-area.jpeg → Feature Highlights "Custom TV Media Unit & Mural Wall" + Instagram fallback tile
+- Kitchen & Dining: real photo /kitchen-dining.jpeg → Feature Highlights card (replaces stock "Ambient Strip Lighting") + Instagram tile
+- Daughter's room: /daughter-room.jpeg → Feature Highlights "Daughter's Room — Arched Wardrobe Wall" (replaces stock "Accent Wall Mural")
+- Master bedroom: /master-bed.jpeg → Highlights "Master Bedroom — Halo Ceiling & Lounge Corner" (replaces stock bedroomArch); /master-tv.jpeg → Journey tab Stage 05 "Cove Lighting & TV Wall"; /master-wardrobe.jpeg → Instagram tile
+- Verified via screenshots: commercial tab, highlights grid, journey grid all render real photos
+
 ## Known Gaps / Backlog
 - P0: Replace placeholder WhatsApp number (currently 919876543210 in src/components/kk/data.js) with Akshada's real number
 - P1: Replace stock images with real project photos and real founder portrait

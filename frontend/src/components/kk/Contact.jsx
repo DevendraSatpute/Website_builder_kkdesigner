@@ -5,7 +5,7 @@ import { EMAIL, INSTAGRAM_URL } from "./data";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
-const PROJECT_TYPES = ["Bungalow / Villa", "Apartment", "Luxury Washroom", "3D Render Only"];
+const PROJECT_TYPES = ["Bungalow / Villa", "Apartment", "Commercial Office", "Luxury Washroom", "3D Render Only"];
 const STYLES = ["Modern Minimal", "Contemporary Luxury", "Warm Traditional", "Japandi / Earthy", "Not sure yet — guide me"];
 
 const inputCls =
